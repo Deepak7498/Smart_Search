@@ -1,0 +1,49 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "File Tagging API",
+    "version": "1.0.0",
+    "description": "API to upload a file, analyze its content, and return related tags."
+  },
+  "host": "localhost:5000",
+  "schemes": ["http"],
+  "paths": {
+    "/upload": {
+      "post": {
+        "summary": "Upload a file",
+        "description": "Accepts a file and returns a list of related tags based on its content.",
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "File to be uploaded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of related tags",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  }
+}
